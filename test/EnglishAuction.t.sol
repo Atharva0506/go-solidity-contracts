@@ -68,8 +68,8 @@ contract TestEnglishAuction is Test {
     }
 
     function test_RevertStartIfNotOwner() public {
-        vm.prank(bidder1);
         vm.expectRevert("Not the owner");
+        vm.prank(bidder1);
         auction.start(OPENING_BID, DURATION);
     }
 
@@ -100,8 +100,8 @@ contract TestEnglishAuction is Test {
     }
 
     function test_RevertBidIfNotStarted() public {
-        vm.prank(bidder1);
         vm.expectRevert("Auction not active");
+        vm.prank(bidder1);
         auction.bid{value: 2 ether}();
     }
 
@@ -109,8 +109,8 @@ contract TestEnglishAuction is Test {
         vm.prank(owner);
         auction.start(OPENING_BID, DURATION);
 
-        vm.prank(bidder1);
         vm.expectRevert("Bid must be higher than current highest bid");
+        vm.prank(bidder1);
         auction.bid{value: 0.5 ether}();
     }
 
@@ -118,8 +118,8 @@ contract TestEnglishAuction is Test {
         vm.prank(owner);
         auction.start(OPENING_BID, DURATION);
 
-        vm.prank(owner);
         vm.expectRevert("Owner cannot bid on their own auction");
+        vm.prank(owner);
         auction.bid{value: 2 ether}();
     }
 
@@ -165,8 +165,8 @@ contract TestEnglishAuction is Test {
     }
 
     function test_RevertWithdrawIfNothingToWithdraw() public {
-        vm.prank(bidder1);
         vm.expectRevert("Nothing to withdraw");
+        vm.prank(bidder1);
         auction.withdraw();
     }
 
@@ -215,8 +215,8 @@ contract TestEnglishAuction is Test {
         vm.prank(owner);
         auction.start(OPENING_BID, DURATION);
 
-        vm.prank(owner);
         vm.expectRevert("Auction has not ended yet");
+        vm.prank(owner);
         auction.end();
     }
 
@@ -226,8 +226,8 @@ contract TestEnglishAuction is Test {
 
         vm.warp(block.timestamp + DURATION + 1);
 
-        vm.prank(bidder1);
         vm.expectRevert("Not the owner");
+        vm.prank(bidder1);
         auction.end();
     }
 }
