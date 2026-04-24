@@ -8,7 +8,7 @@ interface IERC721 {
 contract EnglishAuction {
 //events
     event Start(uint startTime , uint endTime);
-    event Bid(address bidder , uint amount);
+    event Bid(address indexed bidder , uint amount);
     // Auction state
     bool public started;
     bool public ended;
@@ -54,15 +54,22 @@ contract EnglishAuction {
     }
 
     function bid() external payable {
-        // TODO: Implement bid logic
         // 1. Check if started and not ended
+        require(started && !ended , "Auction not started or ended");
+        require(block.timestamp < endTime , "Auction has ended");
         // 2. Check if msg.value > highestBid
-        // 3. Refund the previous highest bidder
-        // 4. Update highestBid and highestBidder
+        require(msg.value > highestBid , "Bid must be higher than current highest bid");
+       
+
+        allBids[highestBidder] += highestBid;
+        highestBid = msg.value;
+        highestBidder = msg.sender;
+
+        emit Bid(msg.sender, msg.value);
     }
 
     function withdraw() external {
-        // TODO: Implement withdraw logic
+        
     }
 
     function end() external onlyOwner {
