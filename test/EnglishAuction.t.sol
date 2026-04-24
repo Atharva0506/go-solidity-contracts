@@ -118,6 +118,8 @@ contract TestEnglishAuction is Test {
         vm.prank(owner);
         auction.start(OPENING_BID, DURATION);
 
+        // Fund owner so the ETH transfer doesn't fail before the contract's require check
+        vm.deal(owner, 10 ether);
         vm.expectRevert("Owner cannot bid on their own auction");
         vm.prank(owner);
         auction.bid{value: 2 ether}();
