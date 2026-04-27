@@ -253,5 +253,7 @@ cast call <addr> "functionName()" --rpc-url <url>  # Read from contract
 - [OpenZeppelin Contracts](https://docs.openzeppelin.com/contracts/) — Security library
 - [go-ethereum](https://geth.ethereum.org/) — Go Ethereum client & tools
 - [Solidity by Example](https://solidity-by-example.org/) — Learn Solidity patterns
+- [Build an Ethereum Smart Contract with Go and Solidity](https://www.linkedin.com/learning/build-an-ethereum-smart-contract-with-go-and-solidity) — LinkedIn Learning course this project follows
+- [Full Go API (smart-contract)](https://github.com/Atharva0506/Golang/tree/main/smart-contract) — Complete Go application that interacts with the deployed contract
 
 ---
