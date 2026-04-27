@@ -65,7 +65,7 @@ Make sure you have these installed:
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/go-solidity-contracts.git
+git clone https://github.com/Atharva0506/go-solidity-contracts.git
 cd go-solidity-contracts
 ```
 
@@ -145,7 +145,7 @@ This creates `pkg/contract/auction.go` with Go functions like:
 ### Step 4: Initialize Go Module
 
 ```bash
-go mod init github.com/YOUR_USERNAME/go-solidity-contracts
+go mod init github.com/Atharva0506/go-solidity-contracts
 go mod tidy
 ```
 
