@@ -151,26 +151,48 @@ go mod tidy
 
 ---
 
-## 📜 Deploy to Local Testnet
+## 📜 Deploy to Local Testnet (Anvil)
 
-### Start a Local Blockchain
+To deploy the smart contract to a local blockchain environment, we use Foundry's `anvil` node and `forge script`.
+
+### 1. Start Anvil (Local Blockchain)
+
+Open a new terminal window and run:
 
 ```bash
-# Anvil = local Ethereum node (comes with Foundry)
+# Start the local Ethereum node
 anvil
 ```
 
-This starts a local chain at `http://127.0.0.1:8545` with 10 pre-funded accounts.
+Keep this terminal running. It will start a local chain at `http://127.0.0.1:8545` and provide 10 pre-funded test accounts with their private keys.
 
-### Deploy with Foundry Script
+### 2. Deploy with Foundry Script
+
+Open a **second terminal window** (in the same project directory) and run the deployment script. 
+
+> **Where does the private key come from?**
+> When you start `anvil`, it deterministically generates 10 test accounts, each loaded with 10,000 fake ETH. The private key `0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80` is the **well-known default private key for Account #0** in Anvil. You will see it listed in your first terminal window under "Private Keys".
 
 ```bash
-# Deploy using the first Anvil account's private key
+# Deploy the NFT and English Auction contracts
 forge script script/EnglishAuction.s.sol:EnglishAuctionScript \
   --rpc-url http://127.0.0.1:8545 \
   --private-key 0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80 \
   --broadcast
 ```
+
+### 3. Verify Deployment
+
+If successful, you will see output similar to this:
+```text
+== Logs ==
+  MyNFT deployed at: 0x...
+  NFT #1 minted to: 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266
+  EnglishAuction deployed at: 0x...
+  Auction approved to transfer NFT #1
+```
+
+You can now interact with the deployed contracts at these addresses using `cast` commands or your generated Go bindings!
 
 ---
 

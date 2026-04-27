@@ -1,4 +1,4 @@
-module github.com/YOUR_USERNAME/go-solidity-contracts
+module github.com/Atharva0506/go-solidity-contracts
 
 go 1.25.0
 
